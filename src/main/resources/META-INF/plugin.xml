@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>com.angel.easy.model.generator</id>
+    <name>emodel generator</name>
+    <version>v1.0.0</version>
+    <vendor email="angeljinkwan@163.com" url="http://www.angel.com">angel</vendor>
+
+    <description>
+        use to generate easy-emodel's Bean and Annotation.
+    </description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="angel_plugin" class="com.angel.plugin.GenerateAction" text="Easy EModel Plugin"
+                description="简化emodel的bean生成器">
+            <add-to-group group-id="ProjectViewPopupMenu"  anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
