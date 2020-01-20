@@ -1,12 +1,12 @@
 package com.angel.plugin.generator.base;
 
 import com.google.common.base.CaseFormat;
-import com.tsintergy.emodel.core.model.EModel;
-import com.tsintergy.emodel.core.model.meta.Attribute;
-import com.tsintergy.emodel.core.model.meta.TableInfo;
-import com.tsintergy.emodel.core.model.meta.Template;
-import com.tsintergy.emodel.core.model.meta.TemplateProperty;
-import com.tsintergy.emodel.core.model.table.StructTable;
+import com.angel.emodel.core.model.EModel;
+import com.angel.emodel.core.model.meta.Attribute;
+import com.angel.emodel.core.model.meta.TableInfo;
+import com.angel.emodel.core.model.meta.Template;
+import com.angel.emodel.core.model.meta.TemplateProperty;
+import com.angel.emodel.core.model.table.StructTable;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,7 +35,7 @@ public class E2BeanGenerator implements E2BeanFactory {
         ClassProperty modelBean = new ClassProperty();
         modelBean.setPackageName(config.getPackageName());
         modelBean.setClassName(config.getClassName());
-        modelBean.setParentPackageName("com.tsintergy.emodel.easy.core");
+        modelBean.setParentPackageName("com.angel.emodel.easy.core");
         modelBean.setParentClassName("StaticEModel");
         List<FieldProperty> modelFields = new ArrayList<>();
         modelBean.setFiledProperties(modelFields);
@@ -47,7 +47,7 @@ public class E2BeanGenerator implements E2BeanFactory {
             field.setFieldName(formatToLowerCamel(config.getTableFormat(), tableInfo.getTableName()+"s"));
             field.setFieldType("List<" + formatToUpperCamel(config.getTableFormat(),tableInfo.getTableName()) + ">");
             AnnotationProperty annotation = new AnnotationProperty();
-            annotation.setPackageName("com.tsintergy.emodel.easy.annotation");
+            annotation.setPackageName("com.angel.emodel.easy.annotation");
             annotation.setName("ETable");
             Map<String, String> fieldMap = new HashMap<>();
             fieldMap.put("name", tableInfo.getTableName());
@@ -58,12 +58,12 @@ public class E2BeanGenerator implements E2BeanFactory {
             if (MapUtils.isNotEmpty(tableInfo.getArrtibutesMap())) {
                 StringBuilder attrs = new StringBuilder("{");
                 annotation.setAnnotationImportClass(new ArrayList<String>() {{
-                    add("com.tsintergy.emodel.easy.annotation.ETableAttr");
+                    add("com.angel.emodel.easy.annotation.ETableAttr");
                 }});
                 for (Map.Entry<String, Attribute> attribute :tableInfo.getArrtibutesMap().entrySet()) {
                     AnnotationProperty annotationProperty = new AnnotationProperty();
                     annotationProperty.setName("ETableAttr");
-                    annotationProperty.setPackageName("com.tsintergy.emodel.easy.annotation");
+                    annotationProperty.setPackageName("com.angel.emodel.easy.annotation");
                     Map<String, String> annotationFieldMap = new HashMap<>();
                     annotationFieldMap.put("name",attribute.getKey());
                     annotationFieldMap.put("value", attribute.getValue().getValue());
@@ -106,7 +106,7 @@ public class E2BeanGenerator implements E2BeanFactory {
                     List<AnnotationProperty> annotationProperties = new ArrayList<>();
                     AnnotationProperty annotationProperty = new AnnotationProperty();
                     annotationProperty.setName("ETableField");
-                    annotationProperty.setPackageName("com.tsintergy.emodel.easy.annotation");
+                    annotationProperty.setPackageName("com.angel.emodel.easy.annotation");
                     Map<String, String> annotationFieldMap = new HashMap<>();
                     annotationFieldMap.put("name", property.getName());
                     //todo:明明有备注这么一个属性，怎么别名就变成了备注

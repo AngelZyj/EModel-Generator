@@ -1,6 +1,6 @@
 package com.angel.plugin.generator.base;
 
-import com.tsintergy.emodel.core.model.EModel;
+import com.angel.emodel.core.model.EModel;
 
 import java.io.IOException;
 
